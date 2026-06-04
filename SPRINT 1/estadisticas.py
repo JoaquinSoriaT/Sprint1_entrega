@@ -91,6 +91,34 @@ def buscar_usuario_mas_joven(lista: list) -> None:
     mostrar_usuario_simple(lista, indice, "El usuario mas joven")
 
 
+def buscar_indice_mayor(lista: list, indice_atributo: int) -> int:
+    """
+    Descripción: Determina el índice del elemento con el mayor valor numérico
+    en un atributo específico de la lista.
+    Parámetros:
+        lista: Lista bidimensional a evaluar.
+        indice_atributo: Índice del valor numérico a comparar.
+    Retorno: Índice del elemento con el valor máximo hallado.
+    """
+    indice_mayor = 0
+    for i in range(len(lista)):
+        if (lista[i][indice_atributo] >
+                lista[indice_mayor][indice_atributo]):
+            indice_mayor = i
+    return indice_mayor
+
+
+def buscar_usuario_mas_viejo(lista: list) -> None:
+    """
+    Descripción: Identifica y expone en consola los datos del usuario
+    con la mayor edad en la lista.
+    Parámetros:
+        lista: Lista bidimensional de usuarios.
+    """
+    indice = buscar_indice_mayor(lista, 6)
+    mostrar_usuario_simple(lista, indice, "El usuario de mayor edad")
+
+
 def calcular_cantidad_usuarios(lista: list) -> int:
     """
     Descripción: Contabiliza la cantidad total de usuarios registrados
@@ -176,4 +204,3 @@ def buscar_usuario_nombre_mas_largo(lista: list) -> None:
     """
     indice = buscar_indice_cadena_mas_larga(lista, 4)
     mostrar_usuario_simple(lista, indice, "Usuario con nombre mas largo")
-

@@ -104,21 +104,30 @@ def ejecutar_menu_estadisticas(lista: list) -> None:
             cartel("2. Usuario más joven")
             buscar_usuario_mas_joven(lista)
         elif opcion == 3:
+            cartel("3. Usuario de mayor edad")
+            buscar_usuario_mas_viejo(lista)
+        elif opcion == 4:
             cartel("4. Cantidad total de usuarios")
             calcular_cantidad_usuarios(lista)
-        elif opcion == 4:
+        elif opcion == 5:
+            cartel("5. Usuarios mayores de 18 años")
+        elif opcion == 6:
             cartel("6. Buscar usuario por nombre")
             encontrar_usuario(lista)
-        elif opcion == 5:
+        elif opcion == 7:
             cartel("7. Listado completo de usuarios")
             mostrar_lista_usuarios(lista)
-        elif opcion == 6:
+        elif opcion == 8:
             cartel("8. Usuario con nombre más largo")
             buscar_usuario_nombre_mas_largo(lista)
+        elif opcion == 9:
+            cartel("9. Cantidad de usuarios menores de 18 años")
+        elif opcion == 10:
+            cartel("10. Usuario con identificador más alto")
         else:
             cartel("Volver al menu ADMIN")
             flag = False
-            ejecutar_menu_admin(lista)
+            ejecutar_menu_admin()
 
 
 def mostrar_menu_principal() -> None:
@@ -232,17 +241,3 @@ def iniciar_sesion(lista: list) -> None:
         print("-----------------------------")
         print("Usuario no encontrado")
         print("-----------------------------")
-
-
-# def modificar_usuario(lista:list):
-#     encontrado = False
-#     mail = validar_cadena("Mail: " , "ERROR,ingresa mail valido: ")
-#     for i in range(len(lista)):
-#         if lista[i][1] == mail:
-#             encontrado = True
-#     if encontrado == True:
-#         cartel("Usuario encontrado")
-#     else:
-#         cartel("Usuario no encontrao")
-
-    
