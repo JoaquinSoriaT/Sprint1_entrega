@@ -86,8 +86,9 @@ def encontrar_usuario_por_dato(
     """
     for i in range(len(lista)):
         if lista[i][sub_indice] == dato:
-            return lista[i]
-    return encontrar_usuario_por_dato(lista, sub_indice, input(mensaje_error))
+            retorno = lista[i]
+    retorno = encontrar_usuario_por_dato(lista, sub_indice, input(mensaje_error))
+    return retorno
 
 
 def normalizar_indice(indice):
@@ -100,23 +101,24 @@ def normalizar_indice(indice):
     recursiva si el campo no es válido.
     """
     if indice == "Mail":
-        return 1
+        retorno = 1
     elif indice == "Contraseña":
-        return 2
+        retorno = 2
     elif indice == "Rol":
-        return 3
+        retorno = 3
     elif indice == "Nombre":
-        return 4
+        retorno = 4
     elif indice == "Apellido":
-        return 5
+        retorno = 5
     elif indice == "Edad":
-        return 6
+        retorno = 6
     elif indice == "Nacionalidad":
-        return 7
+        retorno = 7
     elif indice == "Dni":
-        return 8
+        retorno = 8
     else:
-        return normalizar_indice(input("ERROR, ingresa un campo valido: "))
+        retorno = normalizar_indice(input("ERROR, ingresa un campo valido: "))
+    return retorno
 
 
 def modificar_usuario_especifico(lista: list) -> None:
