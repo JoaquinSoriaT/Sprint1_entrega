@@ -74,6 +74,7 @@ def ejecutar_menu_admin(lista: list) -> None:
             ejecutar_menu_estadisticas(lista)
         elif opcion == 2:
             cartel("2. Modificar usuario")
+            modificar_usuario_especifico(lista)
         elif opcion == 3:
             cartel("3. Eliminar usuario")
             eliminar_usuario(lista)

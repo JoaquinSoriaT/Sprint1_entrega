@@ -1,3 +1,4 @@
+from interfaz import mostrar_usuario
 from validaciones import *
 
 
@@ -9,7 +10,7 @@ def eliminar_usuario(lista: list) -> None:
         lista: Lista que contiene a los usuarios registrados.
     """
     encontrado = False
-    mail = validar_cadena("Mail: ", "ERROR,ingresa un mail valido: ")
+    mail = validar_cadena("Mail: ", "ERROR, ingresa un mail valido: ")
     for i in range(len(lista)):
         if lista[i][1] == mail:
             encontrado = True
@@ -20,7 +21,7 @@ def eliminar_usuario(lista: list) -> None:
             break
     if encontrado == False:
         print("-----------------------------")
-        print("ERROR,usuario no encontrado")
+        print("ERROR, usuario no encontrado")
         print("-----------------------------")
 
 
@@ -33,28 +34,28 @@ def registrar_usuario(lista: list) -> None:
     """
     id = len(lista) + 1
     mail = validar_cadena(
-        "Mail: ", "ERROR,ingresa un mail valido: "
+        "Mail: ", "ERROR, ingresa un mail valido: "
     )
     password = validar_cadena(
-        "Contraseña: ", "Error,ingresa una contraseña valida: "
+        "Contraseña: ", "ERROR, ingresa una contraseña valida: "
     )
     rol = validar_cadena(
-        "Rol: ", "ERROR,ingresa un rol valido: "
+        "Rol: ", "ERROR, ingresa un rol valido: "
     )
     nombre = validar_cadena(
-        "Nombre: ", "ERROR,ingresa un nombre valido: "
+        "Nombre: ", "ERROR, ingresa un nombre valido: "
     )
     apellido = validar_cadena(
-        "Apelido: ", "ERROR,ingresa un apellido valido: "
+        "Apellido: ", "ERROR, ingresa un apellido valido: "
     )
     edad = validar_numero_rango(
-        0, 150, "Edad: ", "ERROR,ingresa una edad valida: "
+        0, 150, "Edad: ", "ERROR, ingresa una edad valida: "
     )
     nacionalidad = validar_cadena(
-        "Nacionalidad: ", "ERROR,ingresa una nacionalidad valida: "
+        "Nacionalidad: ", "ERROR, ingresa una nacionalidad valida: "
     )
     dni = validar_numero_mayor(
-        0, "Dni: ", "ERROR,ingresa un DNI valido: "
+        0, "Dni: ", "ERROR, ingresa un DNI valido: "
     )
     fecha_registro = validar_fecha()
     activo = True
@@ -65,4 +66,83 @@ def registrar_usuario(lista: list) -> None:
     lista.append(nuevo_usuario)
 
 
+def encontrar_usuario_por_dato(
+    lista: list,
+    sub_indice: int,
+    dato: str,
+    mensaje_error: str = "ERROR, ingresa un dato valido: "
+) -> list:
+    """
+    Descripción: Busca un usuario en la lista por un dato específico
+    (como mail, nombre, etc.) y devuelve su índice si es encontrado.
+    Parámetros:
+        lista: Lista que contiene a los usuarios registrados.
+        dato: El valor del dato a buscar (por ejemplo, el mail).
+        sub_indice: El índice en la sublista del usuario donde se encuentra 
+        el dato a buscar.
+        mensaje_error: Mensaje que se muestra si el dato no es encontrado.
+    Retorno: Índice del usuario encontrado o llamada recursiva si no se 
+    encuentra.
+    """
+    for i in range(len(lista)):
+        if lista[i][sub_indice] == dato:
+            return lista[i]
+    return encontrar_usuario_por_dato(lista, sub_indice, input(mensaje_error))
 
+
+def normalizar_indice(indice):
+    """
+    Descripción: Convierte un nombre de campo a su índice correspondiente en 
+    la sublista del usuario.
+    Parámetros:
+        indice: El nombre del campo a convertir.
+    Retorno: El índice correspondiente en la sublista del usuario o llamada 
+    recursiva si el campo no es válido.
+    """
+    if indice == "Mail":
+        return 1
+    elif indice == "Contraseña":
+        return 2
+    elif indice == "Rol":
+        return 3
+    elif indice == "Nombre":
+        return 4
+    elif indice == "Apellido":
+        return 5
+    elif indice == "Edad":
+        return 6
+    elif indice == "Nacionalidad":
+        return 7
+    elif indice == "Dni":
+        return 8
+    else:
+        return normalizar_indice(input("ERROR, ingresa un campo valido: "))
+
+
+def modificar_usuario_especifico(lista: list) -> None:
+    """
+    Descripción: Permite modificar un dato específico de un usuario 
+    encontrado por su mail.
+    Parámetros:
+        lista: Lista que contiene a los usuarios registrados.
+    """
+    usuario = encontrar_usuario_por_dato(
+        lista, 1, input("Mail del usuario a modificar: "),
+        "ERROR, ingresa un mail valido: "
+    )
+
+    a_modificar = input(
+        "\nQue desea modificar?\n"
+        "- Mail\n"
+        "- Contraseña\n"
+        "- Rol\n"
+        "- Nombre\n"
+        "- Apellido\n"
+        "- Edad\n"
+        "- Nacionalidad\n"
+        "- Dni\n"
+    )
+
+    indice_a_modificar = normalizar_indice(a_modificar)
+    usuario[indice_a_modificar] = input(f"Ingrese el nuevo {a_modificar}: ")
+    mostrar_usuario(usuario)
