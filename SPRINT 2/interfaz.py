@@ -4,6 +4,7 @@ from usuarios import usuarios
 from estadisticas import *
 from LIFE.interfaz_life import ejecutar_menu_life
 from AHORCADO.ahorcado import ejecutar_ahorcado
+from ppt.piedra_papel_tijeras import jugar_piedra_papel_tijeras
 
 
 def ejecutar_menu_principal() -> None:
@@ -49,9 +50,12 @@ def ejecutar_menu_jugador(lista: list, i: int) -> None:
         elif opcion == 2:
             ejecutar_menu_life(usuario["nombre"],usuario["apellido"])
         elif opcion == 3:
-            ejecutar_ahorcado()
+            cartel("Jugando Piedra, Papel o Tijeras")
+            victorias_obtenidas = jugar_piedra_papel_tijeras(usuario["nombre"], usuario["apellido"])
         elif opcion == 4:
-            cartel("4. Ver puntajes")
+            ejecutar_ahorcado()       
+        elif opcion == 5:
+            cartel("5. Ver puntajes")
         else:
             cartel("Sesión cerrada")
             flag = False
@@ -156,9 +160,10 @@ def mostrar_menu_jugador() -> None:
     mostrar_lineas("BIENVENIDO JUGADOR", [
         "1. Ver datos personales",
         "2. Jugar L.I.F.E",
-        "3. Jugar ahorcado",
-        "4. Ver puntajes",
-        "5. Cerrar sesión"
+        "3. Jugar Piedra, Papel o Tijeras",
+        "4. Jugar ahorcado",
+        "5. Ver puntajes",
+        "6. Cerrar sesión"
     ])
 
 
