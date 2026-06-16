@@ -108,6 +108,7 @@ def mostrar_estado(palabra_oculta: list, letras_usadas: list, errores: int) -> N
     print(f"\nPalabra: {' '.join(palabra_oculta)}")
     print(f"Letras usadas: {mostrar_letras(letras_usadas, 'Ninguna')}")
     print(f"Errores: {errores}/{MAX_ERRORES}")
+    print("\nEscribí 'ahorcado' para terminar la ronda.")
 
 def validar_letra(string: str)-> bool:
     """
@@ -141,7 +142,11 @@ def jugar_ahorcado() -> bool:
         limpiar_pantalla()
         mostrar_estado(palabra_oculta, letras_usadas, errores)
 
-        letra = input("\nIngresá una letra: ").lower()
+        letra = input("\nIngresá una letra: 
+        ").lower()
+
+        if letra == "ahorcado":
+        return False
 
         while validar_letra(letra) == False or letra in letras_usadas:
             letra = input("Ingresá una letra válida que no hayas usado: ").lower()
