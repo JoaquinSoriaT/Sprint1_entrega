@@ -3,6 +3,7 @@ from gestion_usuarios import *
 from usuarios import usuarios
 from estadisticas import *
 from LIFE.interfaz_life import ejecutar_menu_life
+from AHORCADO.ahorcado import ejecutar_ahorcado
 
 
 def ejecutar_menu_principal() -> None:
@@ -48,7 +49,7 @@ def ejecutar_menu_jugador(lista: list, i: int) -> None:
         elif opcion == 2:
             ejecutar_menu_life(usuario["nombre"],usuario["apellido"])
         elif opcion == 3:
-            cartel("3. Jugar juego 2")
+            ejecutar_ahorcado()
         elif opcion == 4:
             cartel("4. Ver puntajes")
         else:
@@ -155,7 +156,7 @@ def mostrar_menu_jugador() -> None:
     mostrar_lineas("BIENVENIDO JUGADOR", [
         "1. Ver datos personales",
         "2. Jugar L.I.F.E",
-        "3. Jugar juego 2",
+        "3. Jugar ahorcado",
         "4. Ver puntajes",
         "5. Cerrar sesión"
     ])
